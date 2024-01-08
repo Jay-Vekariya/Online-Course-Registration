@@ -1,15 +1,11 @@
 const express = require("express");
 const app = express();   //function with empty arguments 
+const router = require("./Router/auth-router");
 
-app.get("/", (req, res)=>{
-res.status(200).send("Welcome to express js Server");
-});
+//? Mount the Router: to use the router in your main Express app, you can "mount" it at a specifyc URL prefix
+app.use("/api/auth", router);
 
-app.get("/register", (req, res)=>{
-    res.status(200).send("Welcome to Registration Page");
-    });    
-    
-const PORT = 5000;
+const PORT = 3000;
 app.listen(PORT, ()=>{
     console.log(`server Listing on Port Number: ${PORT}`);
-})
+});

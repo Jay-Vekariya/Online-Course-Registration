@@ -1,15 +1,16 @@
 import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
+import { useAuth0 } from "@auth0/auth0-react";
+import { useAuth } from "../App";
+
 const SignIn = () => {
-  const [Logindata, setlogindata] = useState({
-    Username: "",
-    Password: "",
-  });
+  const { Logindata, setlogindata } = useAuth();
+  const { loginWithRedirect } = useAuth0();
 
   const handleLogin = (e) => {
     // console.log(e);
     let name = e.target.name;
-    let value = e.target.value;
+    let value = e.target.value; 
 
     setlogindata({
       ...Logindata,
@@ -23,7 +24,13 @@ const SignIn = () => {
   };
 
   return (
-    <div>
+    <div
+      className="text-black h-[100vh] flex justify-center items-center bg-cover bg-center"
+      style={{
+        background:
+          "url('https://c8.alamy.com/comp/2BKM15H/e-learning-online-school-vector-background-elearning-online-courses-text-with-school-elements-and-computer-devices-for-webinars-tutorial-2BKM15H.jpg",
+      }}
+    >
       <div className="bg-slate-800 border border-slate-400 rounded-md p-8 shadow-lg backdrop-filter backdrop-blur-sm bg-opacity-30 relative ">
         <h1 className="text-4xl text-white font-bold text-center mb-6">
           SIGN IN
@@ -87,16 +94,19 @@ const SignIn = () => {
             </span>
             <br />
             <span className="w-full m-2  flex justify-center">or</span>
-            <button className="flex justify-center ml-0 items-left w-full text-[18px] items-center  rounded-full bg-white text-emerald-800 hover:bg-emerald-600 hover:text-white py-1 transition-colors duration-300">
-              <img
-                src="../src/assets/Google.png"
-                className="h-9 rounded-full flex mr-3"
-                alt="Google Image"
-              />
-              Continue With Google
-            </button>
           </div>
         </form>
+        <button
+          onClick={() => loginWithRedirect()}
+          className="flex justify-center ml-0 items-left w-full text-[18px] items-center  rounded-full bg-white text-emerald-800 hover:bg-emerald-600 hover:text-white py-1 transition-colors duration-300"
+        >
+          <img
+            src="../src/assets/Google.png"
+            className="h-9 w-10 rounded-full flex mr-3"
+            alt="Google Image"
+          />
+          Continue With Google
+        </button>
       </div>
     </div>
   );

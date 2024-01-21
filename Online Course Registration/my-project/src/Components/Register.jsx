@@ -1,15 +1,10 @@
 import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
+import { useAuth } from "../App";
 
 const Register = () => {
-  // useState hook
-  const [userdata, Setuserdata] = useState({
-    Username: "",
-    Password: "",
-    ConfirmPasswrd: "",
-  });
+  const { userdata, Setuserdata } = useAuth();
 
-  // handing the user form data
   const HandleLogin = (e) => {
     // console.log(e);
     let name = e.target.name;
@@ -23,12 +18,18 @@ const Register = () => {
 
   // handling the form submission
   const handleSubmit = (e) => {
-    // e.preventDefault();
+    e.preventDefault();
     console.log(userdata);
   };
 
   return (
-    <div>
+    <div
+      className="text-black h-[100vh] flex justify-center items-center bg-cover bg-center"
+      style={{
+        background:
+          "url('https://c8.alamy.com/comp/2BKM15H/e-learning-online-school-vector-background-elearning-online-courses-text-with-school-elements-and-computer-devices-for-webinars-tutorial-2BKM15H.jpg",
+      }}
+    >
       <div className="bg-slate-800 border border-slate-400 rounded-md p-8 shadow-lg backdrop-filter backdrop-blur-sm bg-opacity-30 relative ">
         <h1 className="text-4xl text-white font-bold text-center mb-6">
           SIGN UP
@@ -94,7 +95,7 @@ const Register = () => {
           <div>
             <span className="m-4">
               Already Create An Account?
-              <NavLink to="/" className="text-blue-300 ml-2.5">
+              <NavLink to="/SignIn" className="text-blue-300 ml-2.5">
                 Login
               </NavLink>
             </span>

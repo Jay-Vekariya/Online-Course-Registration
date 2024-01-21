@@ -1,30 +1,33 @@
-import React from "react";
-import SignIn from "./Components/SignIn";
-import Register from "./Components/Register";
-import Homepage from "./Components/Homepage";
+import React, { createContext, useContext, useState } from "react";
 
-import { Route, Routes } from "react-router-dom";
-import Errorpage from "./Components/Errorpage";
+const PostContext = createContext();
+const useAuth = () => useContext(PostContext);
 
-const App = () => {
+const App = ({ children }) => {
+  const [userdata, Setuserdata] = useState({
+    Username: "",
+    Password: "",
+    ConfirmPasswrd: "",
+  });
+  const [Logindata, setlogindata] = useState({
+    Username: "",
+    Password: "",
+  });
+
   return (
-    <div
-      className="text-white h-[100vh] flex justify-center items-center bg-cover bg-center"
-      style={{
-        background:
-          "url('https://c8.alamy.com/comp/2BKM15H/e-learning-online-school-vector-background-elearning-online-courses-text-with-school-elements-and-computer-devices-for-webinars-tutorial-2BKM15H.jpg",
-      }}
-    >
-      <Routes>
-        <Route path="/" element={<SignIn />} />
-        <Route path="/Register" element={<Register />} />
-        <Route path="/homepage" element={<Homepage />} />
-        <Route path="*" element={<Errorpage />} />
-      </Routes>
-    </div>
+    <>
+      <PostContext.Provider
+        value={{
+          userdata,
+          Setuserdata,
+          Logindata,
+          setlogindata,
+        }}
+      >
+        {children}
+      </PostContext.Provider>
+    </>
   );
 };
 
-export default App;
-
-//https://img.freepik.com/premium-vector/online-courses-elearning-vector-background-online-courses-text-white-desk-with-laptop-computer_572288-1763.jpg?w=2000
+export { useAuth, App };

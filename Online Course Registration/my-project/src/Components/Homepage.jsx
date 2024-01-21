@@ -1,7 +1,12 @@
 import React from "react";
+import Navbar from "./Navbar";
 
 const Homepage = () => {
-  return <div className="text-[250px] text-blue-700 pb-20">Homepage</div>;
+  return (
+    <>
+      <Navbar />
+    </>
+  );
 };
 
 export default Homepage;

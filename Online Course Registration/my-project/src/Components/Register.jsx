@@ -17,9 +17,23 @@ const Register = () => {
   };
 
   // handling the form submission
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     console.log(userdata);
+
+    //Connection with Database..
+    try {
+      const response = await fetch("http://localhost:5000/api/auth/register", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(userdata),
+      });
+      console.log(response);
+    } catch (error) {
+      console.log("Register: ", error);
+    }
   };
 
   return (
@@ -35,9 +49,10 @@ const Register = () => {
           SIGN UP
         </h1>
         <form onSubmit={handleSubmit}>
+          {/* Username */}
           <div className="relative my-4">
             <input
-              type="email"
+              type="text"
               value={userdata.Username}
               name="Username"
               onChange={HandleLogin}
@@ -49,9 +64,28 @@ const Register = () => {
               htmlFor="Username"
               className="absolute text-lg text-white duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
             >
-              Your Email
+              Username
             </label>
           </div>
+          {/* Your Email */}
+          <div className="relative my-4">
+            <input
+              type="email"
+              value={userdata.Email}
+              name="Email"
+              onChange={HandleLogin}
+              className="block text-md  w-72 pt-2 hover:pt-4 duration-300 outline-none py-2.3 px-0 text-lg text-white bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:text-white focus:border-blue-600 peer"
+              required
+              autoComplete="off"
+            />
+            <label
+              htmlFor="Email"
+              className="absolute text-lg text-white duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
+            >
+              Enter Your Email
+            </label>
+          </div>
+          {/* Password */}
           <div className="relative my-4">
             <input
               type="Password"
@@ -66,9 +100,10 @@ const Register = () => {
               htmlFor="password"
               className="absolute text-lg text-white duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
             >
-              Your Password
+              Create Password
             </label>
           </div>
+          {/* ConfirmPasswrd */}
           <div className="relative my-4">
             <input
               type="Password"

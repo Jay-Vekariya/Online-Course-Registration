@@ -6,9 +6,11 @@ const useAuth = () => useContext(PostContext);
 const App = ({ children }) => {
   const [userdata, Setuserdata] = useState({
     Username: "",
+    Email: "",
     Password: "",
     ConfirmPasswrd: "",
   });
+
   const [Logindata, setlogindata] = useState({
     Username: "",
     Password: "",

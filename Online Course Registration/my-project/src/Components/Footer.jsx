@@ -1,4 +1,4 @@
-// import { FaGithub, FaInstagram, FaLinkedinIn, FaTwitter } from "react-icons/fa";
+
 
 const Footer = () => {
   const Year = new Date().getFullYear();
@@ -58,28 +58,24 @@ const Footer = () => {
                             transition-all duration-150 ease-in-out"
                 href=""
               >
-                {/* <FaGithub /> */}
               </a>
               <a
                 className="text-white hover:text-pink-500 transform hover:scale-150
                              transition-all duration-150 ease-in-out"
                 href=""
               >
-                {/* <FaLinkedinIn /> */}
               </a>
               <a
                 className="text-white hover:text-pink-500 transform hover:scale-150
                              transition-all duration-150 ease-in-out"
                 href=""
               >
-                {/* <FaTwitter /> */}
               </a>
               <a
                 className="text-white hover:text-pink-500 transform hover:scale-150
                              transition-all duration-150 ease-in-out"
                 href=""
               >
-                {/* <FaInstagram /> */}
               </a>
             </div>
           </div>

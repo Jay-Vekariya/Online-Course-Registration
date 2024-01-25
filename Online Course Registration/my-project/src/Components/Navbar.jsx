@@ -1,21 +1,28 @@
 import React from "react";
 import "./Navbar.css";
+import { useNavigate } from "react-router-dom";
 
 const Navbar = () => {
+  const navigate = useNavigate();
+
   return (
     <>
       <header>
         <div className="navbar">
           <div className="logo">
-            <p>logo</p>
+            <img
+              id="logo"
+              src="../src/assets/updated-coursherkaro-logo-black.png"
+              alt=""
+            />
           </div>
           <ul className="navlist">
-            <li>home</li>
-            <li>about</li>
-            <li>faq</li>
+            <li onClick={() => navigate("/")}>Home</li>
+            <li>About</li>
+            <li>FAQ</li>
           </ul>
           <div className="login_button">
-            <button>Log in</button>
+            <button onClick={() => navigate("signin")}>Log in</button>
           </div>
         </div>
       </header>

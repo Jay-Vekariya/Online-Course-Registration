@@ -1,16 +1,17 @@
 import React, { useState } from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import { useAuth } from "../App";
+const URL = "http://localhost:5000/api/auth/register";
 
 const Register = () => {
-  const { userdata, Setuserdata } = useAuth();
-
+  const { userdata, setuserdata } = useAuth();
+  const navigate = useNavigate();
   const HandleLogin = (e) => {
     // console.log(e);
     let name = e.target.name;
     let value = e.target.value;
 
-    Setuserdata({
+    setuserdata({
       ...userdata,
       [name]: value,
     });
@@ -19,18 +20,26 @@ const Register = () => {
   // handling the form submission
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(userdata);
+    console.log("On Submit button", userdata);
 
     //Connection with Database..
     try {
-      const response = await fetch("http://localhost:5000/api/auth/register", {
+      const response = await fetch(URL, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
         body: JSON.stringify(userdata),
       });
-      console.log(response);
+      console.log("From register page", response);
+      if (response.ok) {
+        setuserdata({
+          Email: "",
+          Username: "",
+          Password: "",
+          ConfirmPasswrd: "",
+        });
+      }
     } catch (error) {
       console.log("Register: ", error);
     }
@@ -124,6 +133,10 @@ const Register = () => {
           <button
             className="w-full mb-4 text-[18px] mt-6 rounded-full bg-white text-emerald-800 hover:bg-emerald-600 hover:text-white py-2 transition-colors duration-300"
             type="submit"
+            // onClick={() => {
+            //   handleSubmit();
+            //   // navigate("/");
+            // }}
           >
             Register Now
           </button>

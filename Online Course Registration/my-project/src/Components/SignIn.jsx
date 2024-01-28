@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
-import { useAuth0 } from "@auth0/auth0-react";
+import { User, useAuth0 } from "@auth0/auth0-react";
 import { useAuth } from "../App";
+const URL = "http://localhost:5000/api/auth/signin";
 
 const SignIn = () => {
   const { Logindata, setlogindata } = useAuth();
@@ -10,17 +11,37 @@ const SignIn = () => {
   const handleLogin = (e) => {
     // console.log(e);
     let name = e.target.name;
-    let value = e.target.value; 
+    let value = e.target.value;
 
     setlogindata({
       ...Logindata,
       [name]: value,
     });
   };
-  
-  const handleSubmit = (e) => {
-    // e.preventDefault();
-    console.log(Logindata);
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      const response = await fetch(URL, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(Logindata),
+      });
+      console.log("from Login form", Logindata);
+
+      if (response.ok) {
+        alert("Login Successful");
+        setlogindata({ Email: "", Password: "" });
+      }
+      // else {
+      //   alert("Invalid Credential");
+      //   console.log("Invalid Credential");
+      // }
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (
@@ -39,8 +60,8 @@ const SignIn = () => {
           <div className="relative my-4">
             <input
               type="email"
-              name="Username"
-              value={Logindata.Username}
+              name="Email"
+              value={Logindata.Email}
               onChange={handleLogin}
               className="block w-72 pt-2 hover:pt-4 duration-300 outline-none  py-2.3 px-0 text-md text-white bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:text-white focus:border-blue-600 peer"
               required
@@ -72,8 +93,8 @@ const SignIn = () => {
           </div>
           <div className="flex justify-between items-center">
             <div className="flex gap-2 items-center">
-              <input type="checkbox" required />
-              <label htmlFor="Remember Me">Remember Me</label>
+              {/* <input type="checkbox" required />
+              <label htmlFor="Remember Me">Remember Me</label> */}
             </div>
             <NavLink className="text-blue-500 hover:text-blue-700">
               Forgot Password?

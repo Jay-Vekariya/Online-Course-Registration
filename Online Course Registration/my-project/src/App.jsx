@@ -4,7 +4,7 @@ const PostContext = createContext();
 const useAuth = () => useContext(PostContext);
 
 const App = ({ children }) => {
-  const [userdata, Setuserdata] = useState({
+  const [userdata, setuserdata] = useState({
     Username: "",
     Email: "",
     Password: "",
@@ -12,7 +12,7 @@ const App = ({ children }) => {
   });
 
   const [Logindata, setlogindata] = useState({
-    Username: "",
+    Email: "",
     Password: "",
   });
 
@@ -21,7 +21,7 @@ const App = ({ children }) => {
       <PostContext.Provider
         value={{
           userdata,
-          Setuserdata,
+          setuserdata,
           Logindata,
           setlogindata,
         }}

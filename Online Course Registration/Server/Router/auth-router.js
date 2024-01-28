@@ -16,5 +16,6 @@ const authconstroller = require("../Controllers/auth-controller");
 
 router.route("/").get(authconstroller.home);
 router.route("/register").post(authconstroller.register);
+router.route("/signin").post(authconstroller.signin);
     
 module.exports = router;

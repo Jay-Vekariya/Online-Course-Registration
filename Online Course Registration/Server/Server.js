@@ -17,6 +17,7 @@ app.use(express.json());  //Middleware with the help of we can use a JSON format
 
 //? Mount the Router: to use the router in your main Express app, you can "mount" it at a specifyc URL prefix
 app.use("/api/auth", router);
+app.use("/api/auth/signin", router);
 
 const PORT = 5000;
 

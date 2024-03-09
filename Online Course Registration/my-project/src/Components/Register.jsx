@@ -1,26 +1,26 @@
-import React, { useState } from "react";
+import React from "react";
 import { NavLink, useNavigate } from "react-router-dom";
-import { useAuth } from "../App";
+import { useQuiz } from "./Context/HomeContext";
 const URL = "http://localhost:5000/api/auth/register";
 
 const Register = () => {
-  const { userdata, setuserdata } = useAuth();
+  const { Userdata, dispatch } = useQuiz();
   const navigate = useNavigate();
+
   const HandleLogin = (e) => {
-    // console.log(e);
     let name = e.target.name;
     let value = e.target.value;
 
-    setuserdata({
-      ...userdata,
-      [name]: value,
+    dispatch({
+      type: "SET_USER_DATA",
+      payload: { ...Userdata, [name]: value },
     });
   };
 
   // handling the form submission
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log("On Submit button", userdata);
+    console.log("On Submit button", Userdata);
 
     //Connection with Database..
     try {
@@ -29,15 +29,20 @@ const Register = () => {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(userdata),
+        body: JSON.stringify(Userdata),
       });
       console.log("From register page", response);
       if (response.ok) {
-        setuserdata({
-          Email: "",
-          Username: "",
-          Password: "",
-          ConfirmPasswrd: "",
+        alert("Registration Successfull");
+        navigate("/");
+        dispatch({
+          type: "SET_USER_DATA",
+          payload: {
+            Username: "",
+            Email: "",
+            Password: "",
+            ConfirmPasswrd: "",
+          },
         });
       }
     } catch (error) {
@@ -62,7 +67,7 @@ const Register = () => {
           <div className="relative my-4">
             <input
               type="text"
-              value={userdata.Username}
+              value={Userdata.Username}
               name="Username"
               onChange={HandleLogin}
               className="block text-md  w-72 pt-2 hover:pt-4 duration-300 outline-none py-2.3 px-0 text-lg text-white bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:text-white focus:border-blue-600 peer"
@@ -80,7 +85,7 @@ const Register = () => {
           <div className="relative my-4">
             <input
               type="email"
-              value={userdata.Email}
+              value={Userdata.Email}
               name="Email"
               onChange={HandleLogin}
               className="block text-md  w-72 pt-2 hover:pt-4 duration-300 outline-none py-2.3 px-0 text-lg text-white bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:text-white focus:border-blue-600 peer"
@@ -98,7 +103,7 @@ const Register = () => {
           <div className="relative my-4">
             <input
               type="Password"
-              value={userdata.Password}
+              value={Userdata.Password}
               name="Password"
               onChange={HandleLogin}
               className="block w-72 pt-2 hover:pt-4 duration-300 outline-none py-2.3 px-0 text-lg text-white bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:text-white focus:border-blue-600 peer"
@@ -116,7 +121,7 @@ const Register = () => {
           <div className="relative my-4">
             <input
               type="Password"
-              value={userdata.ConfirmPasswrd}
+              value={Userdata.ConfirmPasswrd}
               name="ConfirmPasswrd"
               onChange={HandleLogin}
               className="block w-72 pt-2 hover:pt-4 duration-300 outline-none py-2.3 px-0 text-lg text-white bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:text-white focus:border-blue-600 peer"
@@ -133,10 +138,6 @@ const Register = () => {
           <button
             className="w-full mb-4 text-[18px] mt-6 rounded-full bg-white text-emerald-800 hover:bg-emerald-600 hover:text-white py-2 transition-colors duration-300"
             type="submit"
-            // onClick={() => {
-            //   handleSubmit();
-            //   // navigate("/");
-            // }}
           >
             Register Now
           </button>

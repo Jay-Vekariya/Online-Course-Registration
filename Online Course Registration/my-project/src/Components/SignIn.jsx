@@ -1,22 +1,27 @@
-import React, { useState } from "react";
-import { NavLink } from "react-router-dom";
-import { User, useAuth0 } from "@auth0/auth0-react";
-import { useAuth } from "../App";
+import React from "react";
+import { NavLink, useNavigate } from "react-router-dom";
+import { useAuth0 } from "@auth0/auth0-react";
+import { useQuiz } from "./Context/HomeContext";
 const URL = "http://localhost:5000/api/auth/signin";
 
 const SignIn = () => {
-  const { Logindata, setlogindata } = useAuth();
+  const { Logindata, dispatch } = useQuiz();
   const { loginWithRedirect } = useAuth0();
+  const navigate = useNavigate();
 
   const handleLogin = (e) => {
-    // console.log(e);
     let name = e.target.name;
     let value = e.target.value;
 
-    setlogindata({
-      ...Logindata,
-      [name]: value,
+    dispatch({
+      type: "SET_LOGIN_DATA",
+      payload: { ...Logindata, [name]: value },
     });
+
+    // setlogindata({
+    //   ...Logindata,
+    //   [name]: value,
+    // });
   };
 
   const handleSubmit = async (e) => {
@@ -33,7 +38,11 @@ const SignIn = () => {
 
       if (response.ok) {
         alert("Login Successful");
-        setlogindata({ Email: "", Password: "" });
+        navigate("/");
+        dispatch({
+          type: "SET_LOGIN_DATA",
+          payload: { Email: "", Password: "" },
+        });
       }
       // else {
       //   alert("Invalid Credential");
@@ -60,8 +69,8 @@ const SignIn = () => {
           <div className="relative my-4">
             <input
               type="email"
-              name="Email"
               value={Logindata.Email}
+              name="Email"
               onChange={handleLogin}
               className="block w-72 pt-2 hover:pt-4 duration-300 outline-none  py-2.3 px-0 text-md text-white bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:text-white focus:border-blue-600 peer"
               required

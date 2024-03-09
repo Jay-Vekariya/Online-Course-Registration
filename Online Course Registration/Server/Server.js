@@ -3,7 +3,7 @@ const express = require("express");
 const cors = require("cors");
 const app = express();   //function with empty arguments 
 const router = require("./Router/auth-router");
-const connectDb = require("./Utils/Db");
+const connectDb = require("./Utils/Db"); 
 
 //handling CORS policy..
 const corsOptions = {

@@ -1,9 +1,16 @@
-import React from "react";
+import React, { useState } from "react";
 import "./Navbar.css";
 import { useNavigate } from "react-router-dom";
+import Userprofile from "./Userprofile";
 
 const Navbar = () => {
+  const [isComponentVisible, setComponentVisible] = useState(false);
   const navigate = useNavigate();
+
+  const handleClick = () => {
+    // Toggle the visibility state
+    setComponentVisible(!isComponentVisible);
+  };
 
   return (
     <>
@@ -16,10 +23,13 @@ const Navbar = () => {
               alt=""
             />
           </div>
-          <ul className="navlist">
+          <ul className="navlist text-black">
             <li onClick={() => navigate("/")}>Home</li>
             <li>About</li>
-            <li>FAQ</li>
+            <li>
+              <button onClick={handleClick}>FAQ</button>
+              {isComponentVisible && <Userprofile />}
+            </li>
           </ul>
           <div className="login_button">
             <button onClick={() => navigate("signin")}>Log in</button>

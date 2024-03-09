@@ -1,0 +1,11 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+.user_profile_menu{
+    position: absolute;
+    z-index: 2;
+    /* margin-top: 50px; */
+    padding-top: 50px;
+}

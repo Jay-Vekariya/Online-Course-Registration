@@ -9,7 +9,7 @@ function Progress() {
       <progress max={numQuestions} value={index + Number(answer !== null)} />
 
       <p>
-        Question <strong>{QuesNo + 1}</strong> / {numQuestions}
+        Question <strong>{QuesNo + 1}</strong>
       </p>
 
       <p>

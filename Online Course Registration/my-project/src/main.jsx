@@ -9,8 +9,10 @@ import Homepage from "./Components/Homepage.jsx";
 import Errorpage from "./Components/Errorpage.jsx";
 import SignIn from "./Components/SignIn.jsx";
 import { QuizProvider } from "./Components/Context/HomeContext.jsx";
+import VideoPlayer from "./Components/VideoPlayer.jsx";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
+      <QuizProvider>
   <BrowserRouter>
     <Auth0Provider
       domain="dev-ajs042kkdsdozlwv.us.auth0.com"
@@ -19,15 +21,16 @@ ReactDOM.createRoot(document.getElementById("root")).render(
         redirect_uri: window.location.origin,
       }}
     >
-      <QuizProvider>
         <Routes>
           <Route path="/" element={<Homepage />} />
           <Route path="/Register" element={<Register />} />
           <Route path="/SignIn" element={<SignIn />} />
           <Route path="/DisplayQuiz" element={<DisplayQuiz />} />
+          <Route path="/VideoPlayer" element={<VideoPlayer />} />
           <Route path="*" element={<Errorpage />} />
+
         </Routes>
-      </QuizProvider>
     </Auth0Provider>
   </BrowserRouter>
+      </QuizProvider>
 );

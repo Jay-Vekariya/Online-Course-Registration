@@ -15,7 +15,6 @@ const home = async(req,res) => {
 }
 
 //Registration Logic
-
 const register = async (req,res)=>{
     try{
         console.log(req.body);
@@ -26,20 +25,15 @@ const register = async (req,res)=>{
         if(userExist){
             return res.status(400).json({msg: "Email already exists"});
         }
+        const Usercreated =  await User.create({Email, Username, Password, ConfirmPasswrd});
 
-        //To hash the password
-        const saltRound = 10; 
-        const hash_Password = await bcryptjs.hash(Password, saltRound);
-
-        const Usercreated =  await User.create({Email, Username, Password:hash_Password, ConfirmPasswrd:hash_Password});
-
-        res.status(201).json({msg: "Regiatation Succefull", token: await Usercreated.generateToken(), userId:Usercreated._id.toString(), });
+        res.status(200).json({msg: "Regiatation Succefull", token: await Usercreated.generateToken(), userId:Usercreated._id.toString(), });
     }
     catch(error){
-        res.status(500).json({msg:"page not found"});
+        res.status(500).json({msg:"Internal server error"});
     }
 }
-
+//Login Logic..
 const signin = async (req,res) => {
     try {
         console.log(req.body);
@@ -51,18 +45,15 @@ const signin = async (req,res) => {
         if(!userExist1){
             return res.status(400).json({message:"Invalid Credentials"});
         }
+        const user = await userExist1.comparePassword(Password)
 
-        const passwordCompare = await bcryptjs.compare(Password, userExist1.Password)
-
-        if(passwordCompare){
+        if(userExist1){
             res.status(200).json({message: "Login Successful", token: await userExist1.generateToken(), userId:userExist1._id.toString(), });
         }else{
-            res.status(401).json({message:'Invalid Email or Password'});
+            res.status(400).json({message:'Invalid Email or Password'});
         }
-        // const Usercreated = await User.create({Email, Password});
-        // res.status(200).json({msg: Usercreated});
     } catch (error) {
-        res.status(500).json({msg:"Internal server error"});
+        res.status(500).json({message:"Internal server error"});
         
     }
 }

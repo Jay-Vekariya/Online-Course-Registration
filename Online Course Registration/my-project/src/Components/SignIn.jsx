@@ -17,11 +17,6 @@ const SignIn = () => {
       type: "SET_LOGIN_DATA",
       payload: { ...Logindata, [name]: value },
     });
-
-    // setlogindata({
-    //   ...Logindata,
-    //   [name]: value,
-    // });
   };
 
   const handleSubmit = async (e) => {
@@ -35,7 +30,6 @@ const SignIn = () => {
         body: JSON.stringify(Logindata),
       });
       console.log("from Login form", Logindata);
-
       if (response.ok) {
         alert("Login Successful");
         navigate("/");
@@ -44,12 +38,8 @@ const SignIn = () => {
           payload: { Email: "", Password: "" },
         });
       }
-      // else {
-      //   alert("Invalid Credential");
-      //   console.log("Invalid Credential");
-      // }
     } catch (error) {
-      console.log(error);
+      console.error(error);
     }
   };
 
@@ -58,18 +48,18 @@ const SignIn = () => {
       className="text-black h-[100vh] flex justify-center items-center bg-cover bg-center"
       style={{
         background:
-          "url('https://c8.alamy.com/comp/2BKM15H/e-learning-online-school-vector-background-elearning-online-courses-text-with-school-elements-and-computer-devices-for-webinars-tutorial-2BKM15H.jpg",
+          "url('https://c8.alamy.com/comp/2BKM15H/e-learning-online-school-vector-background-elearning-online-courses-text-with-school-elements-and-computer-devices-for-webinars-tutorial-2BKM15H.jpg')",
       }}
     >
       <div className="bg-slate-800 border border-slate-400 rounded-md p-8 shadow-lg backdrop-filter backdrop-blur-sm bg-opacity-30 relative ">
         <h1 className="text-4xl text-white font-bold text-center mb-6">
           SIGN IN
         </h1>
-        <form onClick={handleSubmit}>
+        <form onSubmit={handleSubmit}>
           <div className="relative my-4">
             <input
               type="email"
-              value={Logindata.Email}
+              value={Logindata?.Email}
               name="Email"
               onChange={handleLogin}
               className="block w-72 pt-2 hover:pt-4 duration-300 outline-none  py-2.3 px-0 text-md text-white bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:text-white focus:border-blue-600 peer"
@@ -77,7 +67,7 @@ const SignIn = () => {
               autoComplete="off"
             />
             <label
-              htmlFor="Username"
+              htmlFor="Email"
               className="absolute text-lg text-white duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
             >
               Your Email
@@ -85,9 +75,9 @@ const SignIn = () => {
           </div>
           <div className="relative my-4">
             <input
-              type="Password"
+              type="password"
               name="Password"
-              value={Logindata.Password}
+              value={Logindata?.Password}
               onChange={handleLogin}
               className="block w-72 pt-2 hover:pt-4 duration-300 outline-none py-2.3 px-0 text-lg text-white bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:text-white focus:border-blue-600 peer"
               required

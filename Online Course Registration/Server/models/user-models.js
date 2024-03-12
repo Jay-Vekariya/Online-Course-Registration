@@ -1,3 +1,4 @@
+const bcrypt = require("bcryptjs");
 const mongoose = require('mongoose');
 const JWT = require("jsonwebtoken");
 
@@ -19,6 +20,31 @@ const userSchema = new mongoose.Schema({
         require: true,
     },
 })
+
+//secure the password with the bcrypt.js
+userSchema.pre("save", async function(next) {
+    console.log("pre Method", this);
+    const user = this;
+
+    if(!user.isModified("Password")){
+        next();
+    }
+
+    try {
+        const saltRound = await bcrypt.genSalt(10);
+        const hash_Password = await bcrypt.hash(user.Password, saltRound);
+        //to make sure that both are same
+        user.Password = hash_Password;
+        user.ConfirmPasswrd = hash_Password; 
+    } catch (error) {
+        next(error);
+    }
+})  
+
+//compare the password
+userSchema.methods.comparePassword = async function(Password){
+    return bcrypt.compare(Password, this.Password)
+}
 
 //json web token
 userSchema.methods.generateToken = function(){

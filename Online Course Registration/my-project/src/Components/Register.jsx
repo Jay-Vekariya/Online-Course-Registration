@@ -67,7 +67,7 @@ const Register = () => {
           <div className="relative my-4">
             <input
               type="text"
-              value={Userdata.Username}
+              value={Userdata?.Username}
               name="Username"
               onChange={HandleLogin}
               className="block text-md  w-72 pt-2 hover:pt-4 duration-300 outline-none py-2.3 px-0 text-lg text-white bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:text-white focus:border-blue-600 peer"
@@ -85,7 +85,7 @@ const Register = () => {
           <div className="relative my-4">
             <input
               type="email"
-              value={Userdata.Email}
+              value={Userdata?.Email}
               name="Email"
               onChange={HandleLogin}
               className="block text-md  w-72 pt-2 hover:pt-4 duration-300 outline-none py-2.3 px-0 text-lg text-white bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:text-white focus:border-blue-600 peer"
@@ -103,7 +103,7 @@ const Register = () => {
           <div className="relative my-4">
             <input
               type="Password"
-              value={Userdata.Password}
+              value={Userdata?.Password}
               name="Password"
               onChange={HandleLogin}
               className="block w-72 pt-2 hover:pt-4 duration-300 outline-none py-2.3 px-0 text-lg text-white bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:text-white focus:border-blue-600 peer"
@@ -121,7 +121,7 @@ const Register = () => {
           <div className="relative my-4">
             <input
               type="Password"
-              value={Userdata.ConfirmPasswrd}
+              value={Userdata?.ConfirmPasswrd}
               name="ConfirmPasswrd"
               onChange={HandleLogin}
               className="block w-72 pt-2 hover:pt-4 duration-300 outline-none py-2.3 px-0 text-lg text-white bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:text-white focus:border-blue-600 peer"

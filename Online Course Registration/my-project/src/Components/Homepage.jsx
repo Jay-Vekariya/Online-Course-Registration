@@ -1,7 +1,8 @@
 import React from "react";
 import Navbar from "./Navbar";
 import Footer from "./Footer";
-import img1 from "../assets/images12.jpeg";
+import img1 from "../assets/Img_1.react-js.png";
+import img2 from "../assets/img2react.jpg";
 import { NavLink } from "react-router-dom";
 
 const Homepage = () => {
@@ -24,24 +25,27 @@ const Homepage = () => {
               </div>
               <div className="p-8">
                 <div className="uppercase tracking-wide text-sm text-indigo-500 font-semibold">
-                  Company retreats
+                React Library of Javascipt
                 </div>
                 <a
                   href="#"
                   className="block mt-1 text-lg leading-tight font-medium text-black hover:underline"
                 >
-                  Incredible accommodation for your team
+                  The top frontend frameworks for web development are widely
+                  favored
                 </a>
                 <p className="mt-2 text-slate-500">
-                  Looking to take your team away on a retreat to enjoy awesome
-                  food and take in some sunshine? We have a list of places to do
-                  just that.
+                  React, a creation of Facebook, has become extremely popular
+                  because of its structure based on components, virtual DOM, and
+                  its simplicity in crafting engaging user interfaces. It's
+                  extensively utilized in both single-page applications and
+                  sizable endeavors.
                 </p>
               </div>
             </div>
             <div className="flex justify-center ">
               <button className="border rounded-md m-2 p-2 text-white bg-green-700">
-                <NavLink to="DisplayQuiz"> Final Exam </NavLink>
+                <NavLink to="DisplayQuiz"> Exam &#8594; </NavLink>
               </button>
             </div>
           </div>
@@ -52,30 +56,31 @@ const Homepage = () => {
               <div className="lg:shrink-0">
                 <img
                   className="h-48 w-full object-cover lg:h-full"
-                  src={img1}
+                  src={img2}
                   alt="Modern building architecture"
                 />
               </div>
               <div className="p-8">
                 <div className="uppercase tracking-wide text-sm text-indigo-500 font-semibold">
-                  Company retreats
+                  React JS
                 </div>
                 <a
                   href="#"
                   className="block mt-1 text-lg leading-tight font-medium text-black hover:underline"
                 >
-                  Incredible accommodation for your team
+                  Most popular frontent framework for web development
                 </a>
                 <p className="mt-2 text-slate-500">
-                  Looking to take your team away on a retreat to enjoy awesome
-                  food and take in some sunshine? We have a list of places to do
-                  just that.
+                  Developed by Facebook, React has gained immense popularity due
+                  to its component-based architecture, virtual DOM, and the ease
+                  of building interactive user interfaces. It's widely used in
+                  single-page applications and large-scale projects.
                 </p>
               </div>
             </div>
             <div className="flex justify-center ">
               <button className="border rounded-md m-2 p-2 text-white bg-green-700">
-                <NavLink to="DisplayQuiz"> Final Exam </NavLink>
+                <NavLink to="DisplayQuiz"> Exam &#8594; </NavLink>
               </button>
             </div>
           </div>

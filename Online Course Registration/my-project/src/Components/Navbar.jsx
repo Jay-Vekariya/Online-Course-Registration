@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import "./Navbar.css";
 import { useNavigate } from "react-router-dom";
-import Userprofile from "./Userprofile";
 
 const Navbar = () => {
   const [isComponentVisible, setComponentVisible] = useState(false);
@@ -28,7 +27,6 @@ const Navbar = () => {
             <li>About</li>
             <li>
               <button onClick={handleClick}>FAQ</button>
-              {isComponentVisible && <Userprofile />}
             </li>
           </ul>
           <div className="login_button">

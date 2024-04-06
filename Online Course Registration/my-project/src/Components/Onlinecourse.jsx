@@ -26,7 +26,7 @@ const Onlinecourse = () => {
                 <br />
                 <hr />
                 <br />
-                <button id="enroll">Enroll now</button>
+                <button id="enroll">Enroll Now</button>
               </div>
             </div>
           </div>

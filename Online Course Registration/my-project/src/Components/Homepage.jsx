@@ -3,9 +3,11 @@ import Navbar from "./Navbar";
 import Footer from "./Footer";
 import img1 from "../assets/Img_1.react-js.png";
 import img2 from "../assets/img2react.jpg";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 
 const Homepage = () => {
+  const navigate = useNavigate();
+
   return (
     <div className="bg-white">
       <header>
@@ -25,7 +27,7 @@ const Homepage = () => {
               </div>
               <div className="p-8">
                 <div className="uppercase tracking-wide text-sm text-indigo-500 font-semibold">
-                React Library of Javascipt
+                  React Library of Javascipt
                 </div>
                 <a
                   href="#"
@@ -44,8 +46,11 @@ const Homepage = () => {
               </div>
             </div>
             <div className="flex justify-center ">
-              <button className="border rounded-md m-2 p-2 text-white bg-green-700">
-                <NavLink to="DisplayQuiz"> Exam &#8594; </NavLink>
+              <button
+                onClick={() => navigate("/Onlinecourse")}
+                className="border rounded-md m-2 p-2 text-white bg-green-700"
+              >
+                View Content
               </button>
             </div>
           </div>
@@ -79,8 +84,11 @@ const Homepage = () => {
               </div>
             </div>
             <div className="flex justify-center ">
-              <button className="border rounded-md m-2 p-2 text-white bg-green-700">
-                <NavLink to="DisplayQuiz"> Exam &#8594; </NavLink>
+              <button
+                onClick={() => navigate("/Onlinecourse")}
+                className="border rounded-md m-2 p-2 text-white bg-green-700"
+              >
+                View Content
               </button>
             </div>
           </div>

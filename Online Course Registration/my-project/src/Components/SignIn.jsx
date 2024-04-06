@@ -2,11 +2,13 @@ import React from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import { useAuth0 } from "@auth0/auth0-react";
 import { useQuiz } from "./Context/HomeContext";
+
 const URL = "http://localhost:5000/api/auth/signin";
 
 const SignIn = () => {
   const { Logindata, dispatch } = useQuiz();
   const { loginWithRedirect } = useAuth0();
+
   const navigate = useNavigate();
 
   const handleLogin = (e) => {

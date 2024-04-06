@@ -6,6 +6,13 @@ const SECS_PER_QUESTION = 30;
 
 const initialState = {
   questions: [],
+  Courses: [
+    { id: 1, name: "Introduction to JavaScript" },
+    { id: 2, name: "React Crash Course" },
+    { id: 3, name: "Node.js Basics" },
+    { id: 4, name: "HTML & CSS Fundamentals" },
+    { id: 5, name: "Python for Beginners" },
+  ],
 
   // 'loading', 'error', 'ready', 'active', 'finished'
   status: "loading",
@@ -29,6 +36,11 @@ const initialState = {
 
 const reducer = (state, action) => {
   switch (action.type) {
+    case "Courses":
+      return {
+        ...state,
+        Courses: action.payload,
+      };
     case "randomquestion":
       const randomIndex = Math.floor(Math.random() * state.questions.length);
 
@@ -118,6 +130,7 @@ const QuizProvider = ({ children }) => {
       points,
       highscore,
       secondsRemaining,
+      Courses,
     },
     dispatch,
   ] = useReducer(reducer, initialState);
@@ -152,6 +165,7 @@ const QuizProvider = ({ children }) => {
           maxPossiblePoints,
           Userdata,
           Logindata,
+          Courses,
           dispatch,
         }}
       >

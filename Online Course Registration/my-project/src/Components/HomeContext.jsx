@@ -1,5 +1,12 @@
-import React, { createContext, useReducer, useEffect, useContext } from "react";
-
+import React, {
+  createContext,
+  useReducer,
+  useEffect,
+  useContext,
+  useState,
+} from "react";
+import img1 from "../assets/Img_1.react-js.png";
+import img2 from "../assets/img2react.jpg";
 const HomeContext = createContext();
 
 const SECS_PER_QUESTION = 30;
@@ -7,11 +14,33 @@ const SECS_PER_QUESTION = 30;
 const initialState = {
   questions: [],
   Courses: [
-    { id: 1, name: "Introduction to JavaScript" },
-    { id: 2, name: "React Crash Course" },
-    { id: 3, name: "Node.js Basics" },
-    { id: 4, name: "HTML & CSS Fundamentals" },
-    { id: 5, name: "Python for Beginners" },
+    {
+      id: 1,
+      title: "React Library of Javascipt",
+      About:
+        "The top frontend frameworks for web development are widely favored",
+      discription:
+        "It's extensively utilized in both single-page applications and sizable endeavors",
+      duration: "02:00:00",
+      Contain: "10 videos, 05 Notes",
+      contentCount: 10,
+      rating: "⭐⭐⭐⭐⭐",
+      thumbnail: img1,
+      enrollButtonText: "Enroll Now for React.js",
+    },
+    {
+      id: 2,
+      title: "React Js",
+      About:
+        "The top frontend frameworks for web development are widely favored",
+      discription:
+        "It's extensively utilized in both single-page applications and sizable endeavors",
+      duration: "02:00:00",
+      contentCount: 10,
+      rating: "⭐⭐⭐⭐⭐",
+      thumbnail: img2,
+      enrollButtonText: "Enroll Now for React.js",
+    },
   ],
 
   // 'loading', 'error', 'ready', 'active', 'finished'
@@ -40,6 +69,7 @@ const reducer = (state, action) => {
       return {
         ...state,
         Courses: action.payload,
+        CourseDetails: action.payloadDisplay,
       };
     case "randomquestion":
       const randomIndex = Math.floor(Math.random() * state.questions.length);
@@ -131,6 +161,7 @@ const QuizProvider = ({ children }) => {
       highscore,
       secondsRemaining,
       Courses,
+      CourseDetails,
     },
     dispatch,
   ] = useReducer(reducer, initialState);
@@ -166,6 +197,7 @@ const QuizProvider = ({ children }) => {
           Userdata,
           Logindata,
           Courses,
+          CourseDetails,
           dispatch,
         }}
       >

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import "./Navbar.css";
-import { useNavigate } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import { useAuth0 } from "@auth0/auth0-react";
 
 const Navbar = () => {
@@ -38,10 +38,6 @@ const Navbar = () => {
     }
   }, [isAuthenticated, getAccessTokenSilently]);
 
-  const handleLogin = () => {
-    loginWithRedirect();
-  };
-
   const handleLogout = () => {
     localStorage.removeItem("token"); // Remove token from localStorage on logout
     logout({ returnTo: window.location.origin });
@@ -59,7 +55,9 @@ const Navbar = () => {
             />
           </div>
           <ul className="navlist text-black">
-            <li onClick={() => navigate("/")}>Home</li>
+            <li>
+              <NavLink to="/">Home</NavLink>
+            </li>
             <li>About</li>
             <li>
               <button onClick={handleClick}>FAQ</button>

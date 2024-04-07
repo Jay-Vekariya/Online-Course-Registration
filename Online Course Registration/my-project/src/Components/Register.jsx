@@ -1,6 +1,6 @@
 import React from "react";
 import { NavLink, useNavigate } from "react-router-dom";
-import { useQuiz } from "./Context/HomeContext";
+import { useQuiz } from "./HomeContext";
 const URL = "http://localhost:5000/api/auth/register";
 
 const Register = () => {

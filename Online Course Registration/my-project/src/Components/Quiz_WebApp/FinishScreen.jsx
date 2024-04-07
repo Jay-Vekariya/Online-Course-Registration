@@ -1,4 +1,4 @@
-import { useQuiz } from "../Context/HomeContext";
+import { useQuiz } from "../HomeContext";
 
 function FinishScreen() {
   const { points, maxPossiblePoints, highscore, dispatch } = useQuiz();

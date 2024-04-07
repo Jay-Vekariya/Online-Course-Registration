@@ -1,4 +1,4 @@
-import { useQuiz } from "../Context/HomeContext";
+import { useQuiz } from "../HomeContext";
 
 function Progress() {
   const { index, QuesNo, numQuestions, points, maxPossiblePoints, answer } =

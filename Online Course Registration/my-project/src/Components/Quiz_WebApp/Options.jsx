@@ -1,4 +1,4 @@
-import { useQuiz } from "../Context/HomeContext";
+import { useQuiz } from "../HomeContext";
 
 
 function Options({ question }) {

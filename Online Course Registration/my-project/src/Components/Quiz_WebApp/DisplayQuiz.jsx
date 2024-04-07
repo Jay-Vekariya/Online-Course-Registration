@@ -10,7 +10,7 @@ import Question from "./Question";
 import StartScreen from "./StartScreen";
 import Timer from "./Timer";
 import "./DisplayQuiz.css";
-import { useQuiz } from "../Context/HomeContext";
+import { useQuiz } from "../HomeContext";
 
 export default function DisplayQuiz() {
   const { status } = useQuiz();

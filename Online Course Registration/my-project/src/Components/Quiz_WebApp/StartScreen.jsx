@@ -1,4 +1,4 @@
-import { useQuiz } from "../Context/HomeContext";
+import { useQuiz } from "../HomeContext";
 
 function StartScreen() {
   const { numQuestions, dispatch } = useQuiz();

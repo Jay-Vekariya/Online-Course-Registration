@@ -217,7 +217,7 @@ const reducer = (state, action) => {
     case "Courses":
       return {
         ...state,
-        Courses: action.payload,
+        Courses: [...state.Courses, ...action.payload],
         CourseDetails: action.payloadDisplay,
       };
     // case "SearchCourse":

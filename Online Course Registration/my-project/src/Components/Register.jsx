@@ -14,6 +14,7 @@ const Register = () => {
     dispatch({
       type: "SET_USER_DATA",
       payload: { ...Userdata, [name]: value },
+      // payloadUserdata: { ...Userdata },
     });
   };
 
@@ -44,6 +45,15 @@ const Register = () => {
             ConfirmPasswrd: "",
           },
         });
+      }
+      //fetch the data form Monogodb...
+      const getDataResponse = await fetch(
+        "http://localhost:5000/api/auth/register"
+      );
+      if (getDataResponse.ok) {
+        const data = await getDataResponse.json();
+        console.log("Data fetched after registration:", data);
+        // Do something with the fetched data
       }
     } catch (error) {
       console.log("Register: ", error);

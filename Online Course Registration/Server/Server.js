@@ -4,6 +4,7 @@ const cors = require("cors");
 const app = express();   //function with empty arguments 
 const router = require("./Router/auth-router");
 const connectDb = require("./Utils/Db"); 
+const {ObjectId} = require('mongodb')
 
 //handling CORS policy..
 const corsOptions = {
@@ -27,3 +28,22 @@ connectDb().then(()=>{
         console.log(`server Listing on Port Number: ${PORT}`);
     });    
 })
+
+// get 
+
+
+  app.get('users/:id', async (req, res) => {
+    try {
+      const userId = req.params.id;
+      const user = await collection.findOne({ _id: new ObjectId(userId) }); // Fetch user by ObjectId
+      console.log("User Details: ", user)
+
+      if (!user) {
+        return res.status(404).json({ error: 'user not found' });
+      }
+      res.json(user); // Send the user as JSON response
+    } catch (error) {
+      console.error('Error fetching user:', error);
+      res.status(500).json({ error: 'Internal server error' });
+    }
+  });

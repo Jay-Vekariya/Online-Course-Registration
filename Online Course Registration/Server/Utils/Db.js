@@ -13,4 +13,6 @@ const connectDb = async() => {
     }
  }
 
+//  const fetchFromDb...
+
  module.exports = connectDb;

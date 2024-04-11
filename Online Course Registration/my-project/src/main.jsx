@@ -11,7 +11,6 @@ import SignIn from "./Components/SignIn.jsx";
 import { QuizProvider } from "./Components/HomeContext.jsx";
 import VideoPlayer from "./Components/VideoPlayer.jsx";
 import Onlinecourse from "./Components/Onlinecourse.jsx";
-// import Onlinecourse2 from "./Components/Onlinecourse2.jsx";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <QuizProvider>
@@ -28,9 +27,8 @@ ReactDOM.createRoot(document.getElementById("root")).render(
           <Route path="/Register" element={<Register />} />
           <Route path="/SignIn" element={<SignIn />} />
           <Route path="/DisplayQuiz" element={<DisplayQuiz />} />
-          <Route path="/VideoPlayer" element={<VideoPlayer />} />
+          <Route path="/VideoPlayer/:title/:id" element={<VideoPlayer />} />
           <Route path="/Onlinecourse" element={<Onlinecourse />} />
-          {/* <Route path="/Onlinecourse2" element={<Onlinecourse2 />} /> */}
           <Route path="*" element={<Errorpage />} />
         </Routes>
       </Auth0Provider>

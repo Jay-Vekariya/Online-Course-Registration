@@ -1,42 +1,50 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
+// import axios from "axios"; // Don't forget to import axios
 import "./Navbar.css";
 import { NavLink, useNavigate } from "react-router-dom";
 import { useAuth0 } from "@auth0/auth0-react";
+// import { useQuiz } from "./HomeContext";
 
 const Navbar = () => {
   const [isComponentVisible, setComponentVisible] = useState(false);
   const navigate = useNavigate();
-
-  const {
-    user,
-    loginWithRedirect,
-    logout,
-    isAuthenticated,
-    getAccessTokenSilently,
-  } = useAuth0();
-
-  const [token, setToken] = useState(null);
+  const { user, logout, isAuthenticated, getAccessTokenSilently } = useAuth0();
+  // const { SearchCourse } = useQuiz();
+  // const [token, setToken] = useState(null);
+  // const [userId, setUserId] = useState(null); // Added userId state
 
   const handleClick = () => {
     // Toggle the visibility state
     setComponentVisible(!isComponentVisible);
   };
 
-  useEffect(() => {
-    const fetchToken = async () => {
-      try {
-        const accessToken = await getAccessTokenSilently();
-        setToken(accessToken);
-        localStorage.setItem("token", accessToken); // Save token to localStorage
-      } catch (error) {
-        console.error(error);
-      }
-    };
+  // useEffect(() => {
+  //   const fetchData = async () => {
+  //     try {
+  //       if (isAuthenticated) {
+  //         // Fetch access token
+  //         const accessToken = await getAccessTokenSilently();
+  //         setToken(accessToken);
+  //         localStorage.setItem("token", accessToken); // Save token to localStorage
 
-    if (isAuthenticated) {
-      fetchToken();
-    }
-  }, [isAuthenticated, getAccessTokenSilently]);
+  //         // Fetch user data
+  //         // const response = await axios.get(
+  //         //   `http://localhost:3000/users/${userId}`,
+  //         //   {
+  //         //     headers: {
+  //         //       Authorization: `Bearer ${accessToken}`, // Attach token to request headers
+  //         //     },
+  //         //   }
+  //         // );
+  //         // setUserId(response.data);
+  //       }
+  //     } catch (error) {
+  //       console.error(error);
+  //     }
+  //   };
+
+  //   fetchData();
+  // }, [isAuthenticated, getAccessTokenSilently, userId]); // Added userId to dependency array
 
   const handleLogout = () => {
     localStorage.removeItem("token"); // Remove token from localStorage on logout
@@ -55,13 +63,37 @@ const Navbar = () => {
             />
           </div>
           <ul className="navlist text-black">
+            {/* <li>
+              <select
+                // onChange={(e) => {
+                //   SearchCourse(e.target.value);
+                // }}
+                className="drop text-semibold px-3 cursor-pointer text-black"
+              >
+                <option>Sort by</option>
+                <option>Web</option>
+                <option>App</option>
+                <option>Development</option>
+              </select>
+            </li> */}
             <li>
               <NavLink to="/">Home</NavLink>
             </li>
             <li>About</li>
+            {/* <p className="text-black">something: {userId.name}</p>{" "} */}
+            {/* Display user's name */}
             <li>
               <button onClick={handleClick}>FAQ</button>
             </li>
+            {/* <li>
+              <input
+                id="search"
+                type="text"
+                placeholder="Search here.."
+                // onChange={(e) => SearchCourse(e.target.value)}
+                className="duration-400 w-28 py-1 text-center text-black transition-all sm:w-64  "
+              />
+            </li> */}
           </ul>
           {isAuthenticated && (
             <div className="flex">

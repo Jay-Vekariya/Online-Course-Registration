@@ -1,32 +1,108 @@
-import React, { useRef, useState } from "react";
-import video from "./passwordVideo.mp4"; // Import your video file
+import React, { useState } from "react";
+import Navbar from "./Navbar";
+import DisplayQuiz from "../Components/Quiz_WebApp/DisplayQuiz";
+import { useParams } from "react-router-dom";
+import "./VideoPlayer.css";
+import { useQuiz } from "./HomeContext";
+const VideoPlayer = () => {
+  const { CourseDetails } = useQuiz();
+  const [currentVideoIndex, setCurrentVideoIndex] = useState(1);
+  const [completedVideos, setCompletedVideos] = useState(Array(7).fill(false));
+  const [showQuiz, setShowQuiz] = useState(false);
+  const { title, id } = useParams();
 
-function VideoPlayer() {
-  const [isPlaying, setIsPlaying] = useState(false);
-  const videoRef = useRef(null);
+  const videoID = CourseDetails.find((course) => course.id === parseInt(id));
 
-  const togglePlay = () => {
-    if (isPlaying) {
-      videoRef.current.pause();
-    } else {
-      videoRef.current.play();
+  const handleNext = () => {
+    if (currentVideoIndex < 7) {
+      setCurrentVideoIndex(currentVideoIndex + 1);
+    } else if (currentVideoIndex === 7) {
+      const allVideosCompleted = completedVideos.every(
+        (completed) => completed
+      );
+      setShowQuiz(allVideosCompleted);
     }
-    setIsPlaying(!isPlaying);
+  };
+
+  const handlePrevious = () => {
+    if (currentVideoIndex > 0) {
+      setCurrentVideoIndex(currentVideoIndex - 1);
+    }
+  };
+
+  const handleComplete = (index) => {
+    const newCompletedVideos = [...completedVideos];
+    newCompletedVideos[index] = true;
+    setCompletedVideos(newCompletedVideos);
+
+    if (index === currentVideoIndex && index < 7) {
+      setCurrentVideoIndex(currentVideoIndex + 1);
+    } else if (index === 7) {
+      setShowQuiz(true); // Display quiz when "Quiz Exam" button is clicked
+    }
   };
 
   return (
-    <div className="flex justify-center items-center h-screen">
-      <div className="w-full max-w-md">
-        <video ref={videoRef} className="w-full" src={video} controls></video>
-        <button
-          className="mt-2 px-4 py-2 bg-blue-500 text-white rounded-md shadow-md focus:outline-none"
-          onClick={togglePlay}
-        >
-          {isPlaying ? "Pause" : "Play"}
-        </button>
+    <>
+      <Navbar />
+      <div className="heading-1">
+        <h2 className="mb-0">{title}</h2>
+        {showQuiz ? (
+          <div>
+            <DisplayQuiz />
+          </div>
+        ) : (
+          <div>
+            <div className="video-description">
+              <iframe
+                className="vlc mt-5"
+                width="760"
+                height="500"
+                heading-1
+                src={videoID[`url${currentVideoIndex}`]}
+                controls
+                frameborder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share;"
+                referrerpolicy="strict-origin-when-cross-origin"
+                allowfullscreen
+              ></iframe>
+              <div className="w-1/3 pt-[3px]">
+                {/* Additional content about the video */}
+                <h3 className="mb-8">{}</h3>
+                <p>{videoID[`description${currentVideoIndex}`]}</p>
+              </div>
+            </div>
+            <div className="btns pt-8">
+              <div className="btng-1">
+                <button
+                  className="btn-1"
+                  onClick={handlePrevious}
+                  disabled={currentVideoIndex === 0}
+                >
+                  Previous
+                </button>
+                <button
+                  className="btn-2"
+                  onClick={handleNext}
+                  disabled={currentVideoIndex === 6}
+                >
+                  Next
+                </button>
+              </div>
+              <div className="btng-2">
+                <button
+                  className="btn-3"
+                  onClick={() => handleComplete(currentVideoIndex)}
+                >
+                  {currentVideoIndex === 6 ? "Quiz Exam" : "Mark as Complete"}
+                </button>
+              </div>
+            </div>
+          </div>
+        )}
       </div>
-    </div>
+    </>
   );
-}
+};
 
 export default VideoPlayer;

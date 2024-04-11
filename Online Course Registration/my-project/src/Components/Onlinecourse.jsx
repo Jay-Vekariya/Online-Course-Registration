@@ -1,43 +1,63 @@
 import React from "react";
 import "./Onlinecourse.css";
 import Navbar from "./Navbar";
-// import img3 from "../assets/Img_1.react-js.png";
+import { useNavigate } from "react-router-dom";
 import { useQuiz } from "./HomeContext";
 
 const Onlinecourse = () => {
-  const { CourseDetails } = useQuiz();
+  const { CourseDetails, dispatch } = useQuiz();
+
+  const navigate = useNavigate();
+
+  const handleVideoInput = (EnrollCourse) => {
+    dispatch({
+      type: "Courses",
+      payloadDisplay: [...CourseDetails, EnrollCourse],
+    });
+    // navigate("Onlinecourse");
+  };
 
   return (
     <>
       <Navbar />
       <main>
-        {CourseDetails.map((CourseDetail) => (
+        {CourseDetails.map((EnrollCourse) => (
           <div className="img_1">
-            <img id="img-1" src={CourseDetail.thumbnail} alt="" />
+            <img id="img-1" src={EnrollCourse.thumbnail} alt="" />
             <div className="information">
               <div className="cor_img">
                 <img
                   className="thumbnail"
-                  src={CourseDetail.thumbnail}
+                  src={EnrollCourse.thumbnail}
                   alt=""
                 />
-                <div>
-                  <h1 className="text-black">{CourseDetail.title}</h1>
+                <div className="ins">
+                  <h1 className="text-black">{EnrollCourse.title}</h1>
                   <p>
                     <span>Duration :</span>
-                    {CourseDetail.duration}
+                    {EnrollCourse.duration}
                   </p>
                   <p>
                     <span>Contain :</span>
-                    {CourseDetail.Contain}
+                    {EnrollCourse.Contain}
                   </p>
                   <p>
-                    <span>Rating :</span> {CourseDetail.rating}
+                    <span>Rating :</span> {EnrollCourse.rating}
                   </p>
                   <br />
                   <hr />
                   <br />
-                  <button id="enroll">{CourseDetail.enrollButtonText}</button>
+                  <button
+                    id="enroll"
+                    onClick={(e) => {
+                      handleVideoInput([EnrollCourse]);
+                      navigate(
+                        `/VideoPlayer/${EnrollCourse.title}/${EnrollCourse.id}`
+                      );
+                    }}
+                  >
+                    {EnrollCourse.enrollButtonText}
+                  </button>
                 </div>
               </div>
             </div>

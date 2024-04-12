@@ -8,7 +8,7 @@
     "build": "vite build",
     "lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview",
-    "server": "json-server --watch data/Question.json  --port 8000"
+    "server": "json-server --watch data/Question.json  --port 9000"
   },
   "dependencies": {
     "@auth0/auth0-react": "^2.2.4",

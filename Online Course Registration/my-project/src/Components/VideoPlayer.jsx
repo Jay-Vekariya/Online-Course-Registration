@@ -14,9 +14,9 @@ const VideoPlayer = () => {
   const videoID = CourseDetails.find((course) => course.id === parseInt(id));
 
   const handleNext = () => {
-    if (currentVideoIndex < 7) {
+    if (currentVideoIndex < 6) {
       setCurrentVideoIndex(currentVideoIndex + 1);
-    } else if (currentVideoIndex === 7) {
+    } else if (currentVideoIndex === 6) {
       const allVideosCompleted = completedVideos.every(
         (completed) => completed
       );
@@ -35,9 +35,9 @@ const VideoPlayer = () => {
     newCompletedVideos[index] = true;
     setCompletedVideos(newCompletedVideos);
 
-    if (index === currentVideoIndex && index < 7) {
+    if (index === currentVideoIndex && index < 6) {
       setCurrentVideoIndex(currentVideoIndex + 1);
-    } else if (index === 7) {
+    } else if (index === 6) {
       setShowQuiz(true); // Display quiz when "Quiz Exam" button is clicked
     }
   };
@@ -54,23 +54,28 @@ const VideoPlayer = () => {
         ) : (
           <div>
             <div className="video-description">
-              <iframe
-                className="vlc mt-5"
-                width="760"
-                height="500"
-                heading-1
-                src={videoID[`url${currentVideoIndex}`]}
-                controls
-                frameborder="0"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share;"
-                referrerpolicy="strict-origin-when-cross-origin"
-                allowfullscreen
-              ></iframe>
-              <div className="w-1/3 pt-[3px]">
-                {/* Additional content about the video */}
-                <h3 className="mb-8">{}</h3>
-                <p>{videoID[`description${currentVideoIndex}`]}</p>
-              </div>
+              {videoID ? (
+                <>
+                  <iframe
+                    className="vlc mt-5"
+                    width="760"
+                    height="500"
+                    heading-1
+                    src={videoID[`url${currentVideoIndex}`]}
+                    controls
+                    frameborder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share;"
+                    referrerpolicy="strict-origin-when-cross-origin"
+                    allowfullscreen
+                  ></iframe>
+                  <div className="w-1/3 pt-[3px]">
+                    <h3 className="mb-8">{}</h3>
+                    <p>{videoID[`description${currentVideoIndex}`]}</p>
+                  </div>
+                </>
+              ) : (
+                <p>No video found</p>
+              )}
             </div>
             <div className="btns pt-8">
               <div className="btng-1">

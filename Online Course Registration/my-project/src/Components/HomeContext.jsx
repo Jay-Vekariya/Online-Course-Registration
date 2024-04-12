@@ -1,10 +1,4 @@
-import React, {
-  createContext,
-  useReducer,
-  useEffect,
-  useContext,
-  useState,
-} from "react";
+import React, { createContext, useReducer, useEffect, useContext } from "react";
 import img2 from "../assets/img2react.jpg";
 import img3 from "../assets/images12.jpeg";
 import img4 from "../assets/image.png";
@@ -14,7 +8,7 @@ const SECS_PER_QUESTION = 30;
 
 const initialState = {
   questions: [],
-  // Courses: [],
+
   Courses: [
     {
       id: 1,
@@ -96,18 +90,24 @@ const initialState = {
       rating: "⭐⭐⭐⭐⭐",
       thumbnail: img3,
       enrollButtonText: "Enroll Now for React.js",
-      url1: "",
-      description1: "",
-      url2: "",
-      description2: "",
-      url3: "",
-      description3: "",
-      url4: "",
-      description4: "",
-      url5: "",
-      description5: "",
-      url6: "",
-      description6: "",
+      url1: "https://www.youtube-nocookie.com/embed/DXlnr7rDDR0?si=zJyYxX2fJA3NrQNk",
+      description1:
+        "Redux Toolkit Tutorial in Hindi #1: A Game-Changer for Managing State in React with Redux Toolkit",
+      url2: "https://www.youtube-nocookie.com/embed/2qlij2qkHZc?si=U4uasBsM1eMNY8kx",
+      description2:
+        "Mastering Redux Toolkit in Hindi #2: Folder Structure, Prerequisites, and Homepage Design",
+      url3: "https://www.youtube-nocookie.com/embed/jSuB8elMLJA?si=S6GGs5KeuPhNyxYd",
+      description3:
+        "Redux Toolkit #3: CreateSlice Method to Organize Your State",
+      url4: "https://www.youtube-nocookie.com/embed/y_kxf-ia6FE?si=Qe2XlLqE5QwbYk5H",
+      description4:
+        "Redux Toolkit #4: Create Store, Understanding the Flow & Redux Dev tools",
+      url5: "https://www.youtube-nocookie.com/embed/PMqszsM7QJQ?si=Vt8hZZvLu2DX1tWt",
+      description5:
+        "Redux Toolkit #5: let's Connect React with Redux Toolkit to Access Store Data🔥",
+      url6: "https://www.youtube-nocookie.com/embed/0LePYfbkvXk?si=tvuQASmIti1U6jCf",
+      description6:
+        "Redux Toolkit #6: Access the state data with useDispatch & action creators ❤️‍🔥",
     },
     {
       id: 4,
@@ -123,18 +123,24 @@ const initialState = {
       rating: "⭐⭐⭐⭐⭐",
       thumbnail: img3,
       enrollButtonText: "Enroll Now for React.js",
-      url1: "",
-      description1: "",
-      url2: "",
-      description2: "",
-      url3: "",
-      description3: "",
-      url4: "",
-      description4: "",
-      url5: "",
-      description5: "",
-      url6: "",
-      description6: "",
+      url1: "https://www.youtube.com/embed/InigFUSiPl8?si=co0U8dbdmJJrbZUR", //1
+      description1:
+        "Installing Android Studio & Setup | Android Tutorials in Hindi #1", //1
+      url2: "https://www.youtube.com/embed/PoBePPh5Iko?si=5q-2coodTMxoKgbF",
+      description2:
+        "Creating Our First Android App (with APK) | Android Tutorials in Hindi #2",
+      url3: "https://www.youtube.com/embed/HHaghq5wXic?si=MamCMF0Peczj0bN-",
+      description3:
+        "Linear Layout & Relative Layout In Android | Android Tutorials in Hindi #3",
+      url4: "https://www.youtube.com/embed/jUmqYE2iWiI?si=nuD95WM7XZILQzuz",
+      description4:
+        "Android activity & Activity Lifecycle | Android Tutorials in Hindi #4",
+      url5: "https://www.youtube.com/embed/WVjqX1BoQeM?si=R9T7F20x_sBg5Qrv",
+      description5:
+        "Project 1: Tic Tac Toe Game Android Game Development | Android Tutorials in Hindi #5",
+      url6: "https://www.youtube.com/embed/n_S2myhVPww?si=5N8MgYuMjq3xGZsF",
+      description6:
+        "Creating Photo Frame Application In Android: Exercise 1 | Android Tutorials in Hindi #6",
     },
     {
       id: 5,
@@ -150,18 +156,24 @@ const initialState = {
       rating: "⭐⭐⭐⭐⭐",
       thumbnail: img3,
       enrollButtonText: "Enroll Now for React.js",
-      url1: "",
-      description1: "",
-      url2: "",
-      description2: "",
-      url3: "",
-      description3: "",
-      url4: "",
-      description4: "",
-      url5: "",
-      description5: "",
-      url6: "",
-      description6: "",
+      url1: "https://www.youtube-nocookie.com/embed/DXlnr7rDDR0?si=zJyYxX2fJA3NrQNk",
+      description1:
+        "Redux Toolkit Tutorial in Hindi #1: A Game-Changer for Managing State in React with Redux Toolkit",
+      url2: "https://www.youtube-nocookie.com/embed/2qlij2qkHZc?si=U4uasBsM1eMNY8kx",
+      description2:
+        "Mastering Redux Toolkit in Hindi #2: Folder Structure, Prerequisites, and Homepage Design",
+      url3: "https://www.youtube-nocookie.com/embed/jSuB8elMLJA?si=S6GGs5KeuPhNyxYd",
+      description3:
+        "Redux Toolkit #3: CreateSlice Method to Organize Your State",
+      url4: "https://www.youtube-nocookie.com/embed/y_kxf-ia6FE?si=Qe2XlLqE5QwbYk5H",
+      description4:
+        "Redux Toolkit #4: Create Store, Understanding the Flow & Redux Dev tools",
+      url5: "https://www.youtube-nocookie.com/embed/PMqszsM7QJQ?si=Vt8hZZvLu2DX1tWt",
+      description5:
+        "Redux Toolkit #5: let's Connect React with Redux Toolkit to Access Store Data🔥",
+      url6: "https://www.youtube-nocookie.com/embed/0LePYfbkvXk?si=tvuQASmIti1U6jCf",
+      description6:
+        "Redux Toolkit #6: Access the state data with useDispatch & action creators ❤️‍🔥",
     },
     {
       id: 6,
@@ -177,18 +189,24 @@ const initialState = {
       rating: "⭐⭐⭐⭐⭐",
       thumbnail: img3,
       enrollButtonText: "Enroll Now for React.js",
-      url1: "",
-      description1: "",
-      url2: "",
-      description2: "",
-      url3: "",
-      description3: "",
-      url4: "",
-      description4: "",
-      url5: "",
-      description5: "",
-      url6: "",
-      description6: "",
+      url1: "https://www.youtube.com/embed/InigFUSiPl8?si=co0U8dbdmJJrbZUR", //1
+      description1:
+        "Installing Android Studio & Setup | Android Tutorials in Hindi #1", //1
+      url2: "https://www.youtube.com/embed/PoBePPh5Iko?si=5q-2coodTMxoKgbF",
+      description2:
+        "Creating Our First Android App (with APK) | Android Tutorials in Hindi #2",
+      url3: "https://www.youtube.com/embed/HHaghq5wXic?si=MamCMF0Peczj0bN-",
+      description3:
+        "Linear Layout & Relative Layout In Android | Android Tutorials in Hindi #3",
+      url4: "https://www.youtube.com/embed/jUmqYE2iWiI?si=nuD95WM7XZILQzuz",
+      description4:
+        "Android activity & Activity Lifecycle | Android Tutorials in Hindi #4",
+      url5: "https://www.youtube.com/embed/WVjqX1BoQeM?si=R9T7F20x_sBg5Qrv",
+      description5:
+        "Project 1: Tic Tac Toe Game Android Game Development | Android Tutorials in Hindi #5",
+      url6: "https://www.youtube.com/embed/n_S2myhVPww?si=5N8MgYuMjq3xGZsF",
+      description6:
+        "Creating Photo Frame Application In Android: Exercise 1 | Android Tutorials in Hindi #6",
     },
   ],
 
@@ -217,14 +235,9 @@ const reducer = (state, action) => {
     case "Courses":
       return {
         ...state,
-        Courses: [...state.Courses, ...action.payload],
+        Courses: action.payload,
         CourseDetails: action.payloadDisplay,
       };
-    // case "SearchCourse":
-    //   return {
-    //     ...state,
-    //     SearchValue: action.payload,
-    //   };
     case "randomquestion":
       const randomIndex = Math.floor(Math.random() * state.questions.length);
 
@@ -316,7 +329,6 @@ const QuizProvider = ({ children }) => {
       secondsRemaining,
       Courses,
       CourseDetails,
-      // SearchValue,
     },
     dispatch,
   ] = useReducer(reducer, initialState);
@@ -329,34 +341,12 @@ const QuizProvider = ({ children }) => {
 
   //fetch the Quiz Application Data from JSON Server using API...
   useEffect(function () {
-    fetch("http://localhost:8000/questions")
+    fetch("http://localhost:9000/questions")
       .then((res) => res.json())
       .then((data) => dispatch({ type: "dataReceived", payload: data }))
       .then(() => dispatch({ type: "randomquestion" }))
       .catch((err) => dispatch({ type: "dataFailed" }));
   }, []);
-
-  //fetch the Courses Data from JSON Server using API...
-  // useEffect(function () {
-  //   fetch("http://localhost:8000/Courses")
-  //     .then((res) => res.json())
-  //     .then((cors) => dispatch({ type: "Courses", payload: cors }))
-  //     .catch((err) => dispatch({ type: "dataFailed" }));
-  // }, []);
-
-  //implement the Search Functionality...
-  // const SearchCourse = (SearchValue) => {
-  //   const filteredValue = Courses.filter((Search) => {
-  //     return `${Search.title.toLowerCase()} ${Search.Category.toLowerCase()}`.includes(
-  //       SearchValue.toLowerCase()
-  //     );
-  //   });
-  //   dispatch({
-  //     type: "SearchCourse",
-  //     payload: filteredValue,
-  //   });
-  //   console.log("filteredValue" + filteredValue);
-  // };
 
   return (
     <>
@@ -375,11 +365,8 @@ const QuizProvider = ({ children }) => {
           Userdata,
           Logindata,
           Courses,
-          // : SearchValue.length > 0 ? SearchValue : Courses,
           CourseDetails,
           dispatch,
-          // SearchCourse,
-          // filteredValue,
         }}
       >
         {children}

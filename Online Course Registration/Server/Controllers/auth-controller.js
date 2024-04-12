@@ -1,5 +1,8 @@
 const User = require("../models/user-models");
 const bcryptjs = require("bcryptjs");
+const express = require('express');
+const router = express.Router();
+const db = require('../Utils/Db');
 
 //* Controllers //
 
@@ -14,12 +17,31 @@ const home = async(req,res) => {
     }
 }
 
+router.get("/register", async (req, res) => {
+    let collection = await db.collection("users");
+    let results = await collection.find({}).toArray(); // find all the records in the collection
+    res.send(results).status(200);
+  });
+
+// This section will help you get a single record by id
+router.get("/:id", async (req, res) => {
+    let collection = await db.collection("users");
+    let query = { _id: new ObjectId(req.params.id) };
+    let result = await collection.findOne(query);
+  
+    if (!result) res.send("Not found").status(404);
+    else res.send(result).status(200);
+  });
+  
+  
+
+
 //Registration Logic
 const register = async (req,res)=>{
     try{
         console.log(req.body);
         const {Email, Username, Password, ConfirmPasswrd} = req.body;
-        console.log("hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh: ", req.body._id)
+        // console.log("hhhhhh: ", req.body._id)
 
         const userExist = await User.findOne({Email}); 
 

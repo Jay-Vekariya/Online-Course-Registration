@@ -12,7 +12,7 @@ const Homepage = () => {
   const handleCoursesDetails = (cors) => {
     dispatch({
       type: "Courses",
-      payload: [...Courses, cors],
+      payload: [...Courses, ...cors],
       payloadDisplay: [...cors],
       // payloadFilterValue: [...filteredValue],
     });

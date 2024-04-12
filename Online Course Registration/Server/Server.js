@@ -3,7 +3,11 @@ const express = require("express");
 const cors = require("cors");
 const app = express();   //function with empty arguments 
 const router = require("./Router/auth-router");
-const connectDb = require("./Utils/Db"); 
+const db = require('./Utils/Db');
+
+const {
+  
+} = require("./Utils/Db"); 
 const {ObjectId} = require('mongodb')
 
 //handling CORS policy..
@@ -23,11 +27,9 @@ app.use("/api/auth/signin", router);
 const PORT = 5000;
 
 //if the Database is successfully Connected then you start the server..
-connectDb().then(()=>{
-    app.listen(PORT, ()=>{
-        console.log(`server Listing on Port Number: ${PORT}`);
-    });    
-})
+app.listen(PORT, () => {
+  console.log(`Server listening on Port Number: ${PORT}`);
+});
 
 // get 
 
